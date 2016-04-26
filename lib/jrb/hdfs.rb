@@ -6,5 +6,5 @@ module Jrb
   end
 end
 
-Dir[("#{__dir__}/jars/*.jar")].each { |jar| require jar }
+Dir[File.expand_path("../jars/*.jar", __FILE__)].each { |jar| require jar }
 require "jrb/hdfs/client"
