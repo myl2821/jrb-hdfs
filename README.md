@@ -1,28 +1,52 @@
 # Jrb::Hdfs
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/jrb/hdfs`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Jrb::Hdfs is a self-contained native *HDFS* client which only supports Jruby.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'jrb-hdfs'
+gem 'jrb-hdfs', github: 'myl2821/jrb-hdfs'
 ```
 
 And then execute:
 
     $ bundle
 
-Or install it yourself as:
+## Base Usage
 
-    $ gem install jrb-hdfs
+```ruby
+require 'jrb-hdfs'
 
-## Usage
+# To create hdfs client, get hadoop config file from your hadoop cluster
+client = Jrb::Hdfs::Client.new("hdfs://localhost", "ENV['HADOOP_HOME']/etc/hadoop/")
 
-TODO: Write usage instructions here
+# list an hdfs entry
+client.list('/')
+
+# copy hdfs file to local
+client.copy_to_local(src, dst)
+
+# check hdfs file exists
+client.exists?(path)
+
+# remove file in hdfs
+client.rm(path)
+
+# put file into hdfs
+client.put(src, dst)
+```
+## For Kerberos Authentication
+
+```ruby
+client = Jrb::Hdfs::Client.new(
+  "hdfs://localhost",
+  "ENV['HADOOP_HOME']/etc/hadoop/",
+  use_kerberos: true,
+  kerberos_username: "no-reply@EXAMPLE.COM",
+  kerberos_keytab_path: 'your-kerberos-keytab.keytab')
+```
 
 ## Development
 
@@ -32,7 +56,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/jrb-hdfs. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/myl2821/jrb-hdfs. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License
