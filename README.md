@@ -1,5 +1,7 @@
 # Jrb::Hdfs
 
+[![Build Status](https://travis-ci.org/myl2821/jrb-hdfs.svg?branch=master)](https://travis-ci.org/myl2821/jrb-hdfs)
+
 Jrb::Hdfs is a self-contained native *HDFS* client which only supports Jruby.
 
 ## Installation
