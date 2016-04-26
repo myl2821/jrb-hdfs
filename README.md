@@ -9,12 +9,16 @@ Jrb::Hdfs is a self-contained native *HDFS* client which only supports Jruby.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'jrb-hdfs', github: 'myl2821/jrb-hdfs'
+gem 'jrb-hdfs'
 ```
 
 And then execute:
 
     $ bundle
+
+Or install it yourself as:
+
+    $ gem install jrb-hdfs
 
 ## Base Usage
 
