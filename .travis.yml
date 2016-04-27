@@ -7,6 +7,7 @@ cache:
 rvm:
     - jruby-19mode
 before_install:
+    - gem install bundler -v 1.11.2
     - gem install jar-dependencies
     - bundle install
     - rake install_jars
