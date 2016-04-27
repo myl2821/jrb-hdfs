@@ -13,12 +13,19 @@ Gem::Specification.new do |spec|
   spec.description   = %q{hdfs client for jruby.}
   spec.homepage      = "https://github.com/myl2821/jrb-hdfs"
   spec.license       = "MIT"
+  spec.platform      = "java"
 
-  spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+  spec.files         = Dir['lib/**/*.rb', 'lib/**/*.jar']
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
+  #Jar dependencies
+  spec.requirements << "jar 'org.apache.hadoop:hadoop-hdfs', '2.7.1'"
+  spec.requirements << "jar 'org.apache.hadoop:hadoop-common', '2.7.1'"
+  spec.requirements << "jar 'org.slf4j:slf4j-log4j12', '1.7.10'"
+
+  spec.add_development_dependency 'jar-dependencies', '~> 0.3.2'
   spec.add_development_dependency "bundler", "~> 1.11"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "minitest", "~> 5.0"

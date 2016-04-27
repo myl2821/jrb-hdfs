@@ -1,4 +1,12 @@
+sudo: false
 language: ruby
+cache:
+- bundler
+- directories:
+    - $HOME/.m2
 rvm:
-  - jruby
-before_install: gem install bundler -v 1.11.2
+    - jruby-19mode
+before_install:
+    - gem install jar-dependencies
+    - bundle install
+    - rake install_jars
