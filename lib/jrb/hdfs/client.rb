@@ -2,11 +2,12 @@ require "jrb/hdfs/version"
 
 module Jrb
   module Hdfs
-    # alias
-    Path = org.apache.hadoop.fs.Path
-    UserGroupInformation = org.apache.hadoop.security.UserGroupInformation
-
     class Client
+      java_import 'org.apache.hadoop.fs.Path'
+      java_import 'org.apache.hadoop.security.UserGroupInformation'
+      java_import 'org.apache.hadoop.conf.Configuration'
+      java_import 'java.net.URI'
+      java_import 'org.apache.hadoop.fs.FileUtil'
       # Constructor
       #
       # @param [String]uri uri of hdfs namenode
@@ -18,7 +19,7 @@ module Jrb
       #   [String]kerberos_keytab_path
       def initialize(uri, conf_path, opts={})
         @uri = uri
-        @hdfs_conf = org.apache.hadoop.conf.Configuration.new
+        @hdfs_conf = Configuration.new
         @hdfs_conf.set("fs.hdfs.impl", "org.apache.hadoop.hdfs.DistributedFileSystem")
 
         conf_files = opts[:conf_files] || ['core-site.xml', 'hdfs-site.xml']
@@ -32,7 +33,7 @@ module Jrb
           UserGroupInformation.loginUserFromKeytab(opts[:kerberos_username], opts[:kerberos_keytab_path])
         end
 
-        @hdfs = org.apache.hadoop.fs.FileSystem.get(java.net.URI.create(uri), @hdfs_conf)
+        @hdfs = org.apache.hadoop.fs.FileSystem.get(URI.create(uri), @hdfs_conf)
       end
 
       # Get list of hdfs entry
@@ -53,7 +54,7 @@ module Jrb
           paths
         else
           file_status = @hdfs.listStatus(Path.new(path))
-          org.apache.hadoop.fs.FileUtil.stat2Paths(file_status)
+          FileUtil.stat2Paths(file_status)
         end
       end
 
