@@ -26,7 +26,7 @@ Or install it yourself as:
 require 'jrb-hdfs'
 
 # To create hdfs client, get hadoop config file from your hadoop cluster
-client = Jrb::Hdfs::Client.new("hdfs://localhost", "ENV['HADOOP_HOME']/etc/hadoop/")
+client = Jrb::Hdfs::Client.new("hdfs://localhost", "#{ENV['HADOOP_HOME']}/etc/hadoop/")
 
 # list an hdfs entry
 client.list('/')
