@@ -10,10 +10,10 @@ module Jrb
       java_import 'org.apache.hadoop.fs.FileUtil'
       # Constructor
       #
-      # @param [String]uri uri of hdfs namenode
-      # @param [String]conf_path configure dir of hadoop
+      # @param [String]uri  uri of hdfs namenode
+      # @param [String]conf_path  configure dir of hadoop
       # @param [Hash]opts
-      #   [Array[String]]   configure file that to be added into hdfs_conf resource
+      #   [Array[String]]conf_files  configure file that to be added into hdfs_conf resource
       #   [boolean]use_kerberos  if use kerberos
       #   [String]kerberos_username
       #   [String]kerberos_keytab_path
@@ -109,6 +109,17 @@ module Jrb
           false
         end
       end
+
+      # Mkdir in hdfs
+      #
+      # @param [String]path
+      #
+      # @return [Boolean]
+      def mkdir(path)
+        @hdfs.mkdirs(Path.new(path))
+      end
+
+      alias :mkdir_p :mkdir
     end
   end
 end

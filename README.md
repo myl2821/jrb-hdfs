@@ -42,6 +42,9 @@ client.rm(path)
 
 # put file into hdfs
 client.put(src, dst)
+
+# mkdir in hdfs
+client.mkdir(path) # equals to client.mkdir(path)
 ```
 ## For Kerberos Authentication
 
