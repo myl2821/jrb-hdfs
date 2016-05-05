@@ -44,7 +44,7 @@ client.rm(path)
 client.put(src, dst)
 
 # mkdir in hdfs
-client.mkdir(path) # equals to client.mkdir(path)
+client.mkdir(path) # equals to client.mkdir_p(path)
 ```
 ## For Kerberos Authentication
 
